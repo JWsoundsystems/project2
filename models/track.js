@@ -11,5 +11,5 @@ module.exports = function (sequelize, DataTypes) {
     sound_file: DataTypes.TEXT,
 
   });
-  return Example;
+  return Track;
 };
