@@ -53,11 +53,11 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
+        <h3>Tracks:</h3>
         <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+          {{#each tracks}}
+          <li data-id="{{this.dataValues.id}}" class="list-group-item">
+            Title:<a href="track/{{this.dataValues.id}}"> {{this.dataValues.title}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
