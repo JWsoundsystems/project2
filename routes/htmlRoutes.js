@@ -4,7 +4,7 @@ module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
     db.Track.findAll({}).then(function (data) {
-      console.log(data)
+      // console.log(data)
       // res.json(data)
 
       res.render("index", {

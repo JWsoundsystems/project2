@@ -1,6 +1,16 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+
+// var $exampleText = $("#example-text");
+// var $exampleDescription = $("#example-description");
+var $trackTitle = $("#track-title");
+var $trackDescription = $("#track-description");
+var $trackLength = $("#track-length");
+var $trackGenre = $("#track-genre");
+var $trackInstrument = $("#track-instrument");
+var $trackBpm = $("#track-bpm");
+var $trackKeySignature = $("#track-key-signature");
+var $trackTimeSignature = $("#track-time-signature");
+var $trackSoundFile = $("#track-sound-file");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
@@ -35,7 +45,7 @@ var refreshExamples = function () {
   API.getExamples().then(function (data) {
     var $examples = data.map(function (track) {
       var $a = $("<a>")
-        .text(track.text)
+        .text(track.title)
         .attr("href", "/track/" + track.id);
 
       var $li = $("<li>")
@@ -64,22 +74,36 @@ var refreshExamples = function () {
 var handleFormSubmit = function (event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var track = {
+    title: $trackTitle.val().trim(),
+    description: $trackDescription.val().trim(),
+    instrument: $trackInstrument.val().trim().toLowerCase(),
+    length: parseInt($trackLength.val().trim()),
+    genre: $trackGenre.val().trim().toLowerCase(),
+    bpm: parseInt($trackBpm.val().trim()),
+    key_signature: $trackKeySignature.val().trim(),
+    time_signature: $trackTimeSignature.val().trim(),
+    sound_file: $trackSoundFile.val().trim()
   };
 
-  if (!(track.text && track.description)) {
-    alert("You must enter an example text and description!");
+  if (!(track.title && track.description && track.instrument && track.length && track.genre && track.bpm && track.key_signature && track.time_signature && track.sound_file)) {
+    alert("You must fill out all the fields!");
     return;
   }
 
-  API.saveExample(example).then(function () {
+  API.saveExample(track).then(function () {
     refreshExamples();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $trackTitle.val("");
+  $trackDescription.val("");
+  $trackInstrument.val("");
+  $trackLength.val("");
+  $trackGenre.val("");
+  $trackBpm.val("");
+  $trackKeySignature.val("");
+  $trackTimeSignature.val("");
+  $trackSoundFile.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
