@@ -26,7 +26,18 @@ module.exports = function (app) {
   // Load example page and pass in an example by id
   app.get("/track/:id", function (req, res) {
     db.Track.findOne({ where: { id: req.params.id } }).then(function (data) {
-      track = { id: data.id, title: data.title, description: data.description, instrument: data.instrument, length: data.length, genre: data.genre, bpm: data.bpm, key_signature: data.key_signature, time_signature: data.time_signature, sound_file: data.sound_file }
+      track = {
+        id: data.id,
+        title: data.title,
+        description: data.description,
+        instrument: data.instrument,
+        length: data.length,
+        genre: data.genre,
+        bpm: data.bpm,
+        key_signature: data.key_signature,
+        time_signature: data.time_signature,
+        sound_file: data.sound_file
+      }
       // res.json(track);
       res.render("track", track);
     });
