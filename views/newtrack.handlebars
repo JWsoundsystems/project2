@@ -50,18 +50,12 @@
                             placeholder="Enter Track time-signature"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="track-sound-file">Track sound-file</label>
-                        <textarea class="form-control" id="track-sound-file" aria-describedby="track-sound-file"
-                            placeholder="Enter Track sound-file"></textarea>
+                            <label for="audioFileChooser">Upload an audio file: </label><br><br>
+                            <input  id="audioFileChooser" type="file" onchange="readFile(this.files);">
                     </div>
                     <button id="submit" class="btn btn-primary float-right">Submit</button>
                 </form>
             </div>
-
-
-
-
-
         </div>
     </div>
 </div>
