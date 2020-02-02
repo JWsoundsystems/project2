@@ -54,8 +54,22 @@ module.exports = function (app) {
 
   const local = require('../keys')
   var S3_BUCKET;
-  if (process.env.S3_BUCKET) { S3_BUCKET = process.env.S3_BUCKET } else { S3_BUCKET = 'ucbx-proj2-tracks' };
+  if (process.env.S3_BUCKET) {
+    S3_BUCKET = process.env.S3_BUCKET
+  } else {
+    S3_BUCKET = 'ucbx-proj2-tracks'
+  };
 
+  if (process.env.AWS_ACCESS_KEY_ID) {
+    S3_KEY = process.env.AWS_ACCESS_KEY_ID
+  } else {
+    S3_KEY = local.k
+  }
+  if (process.env.AWS_SECRET_ACCESS_KEY_ID) {
+    S3_SKEY = process.env.AWS_SECRET_ACCESS_KEY_ID
+  } else {
+    S3_SKEY = local.s
+  }
 
 
   /*
@@ -65,8 +79,8 @@ module.exports = function (app) {
    */
   app.get('/sign-s3', (req, res) => {
     const s3 = new aws.S3({
-      accessKeyId: local.k,
-      secretAccessKey: local.s
+      accessKeyId: S3_KEY,
+      secretAccessKey: S3_SKEY
     });
     const fileName = req.query['file-name'];
     const fileType = req.query['file-type'];
