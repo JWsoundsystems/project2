@@ -17,13 +17,21 @@ var $exampleList = $("#example-list");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function (example) {
+    // var data;
+    console.log('we are in saveExample now, gonna start the ajax call')
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
       url: "api/tracks",
-      data: JSON.stringify(example)
+      data: JSON.stringify(example),
+      success: function (resp) {
+        console.log('we are in success')
+        console.log('resp', resp)
+        return resp.id
+
+      }
     });
   },
   getExamples: function () {
@@ -83,17 +91,74 @@ var handleFormSubmit = function (event) {
     bpm: parseInt($trackBpm.val().trim()),
     key_signature: $trackKeySignature.val().trim(),
     time_signature: $trackTimeSignature.val().trim(),
-    sound_file: $trackSoundFile.val().trim()
+    // sound_file: $trackSoundFile.val().trim()
   };
 
-  if (!(track.title && track.description && track.instrument && track.length && track.genre && track.bpm && track.key_signature && track.time_signature && track.sound_file)) {
+  if (!(track.title && track.description && track.instrument && track.length && track.genre && track.bpm && track.key_signature && track.time_signature)) {
     alert("You must fill out all the fields!");
     return;
   }
+  /*
+            Function to carry out the actual PUT request to S3 using the signed request from the app.
+          */
+  function uploadFile(file, signedRequest, url) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedRequest);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          console.log('FILE WAS UPLOADED!')
+        }
+        else {
+          alert('Could not upload file.');
+        }
+      }
+    };
+    xhr.send(file);
+  }
 
-  API.saveExample(track).then(function () {
-    refreshExamples();
-  });
+  /*
+    Function to get the temporary signed request from the app.
+    If request successful, continue to upload the file using this signed
+    request.
+  */
+  function getSignedRequest(file, aws_file_name) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/sign-s3?file-name=${aws_file_name}&file-type=${file.type}`);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          uploadFile(file, response.signedRequest, response.url);
+        }
+        else {
+          alert('Could not get signed URL.');
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  /*
+   Function called when file input updated. If there is a file selected, then
+   start upload procedure by asking for a signed request from the app.
+  */
+  function initUpload(file, aws_file_name) {
+    // const files = document.getElementById('file-input').files;
+    // const file = files[0];
+    if (file == null) {
+      return alert('No file selected.');
+    }
+    getSignedRequest(file, aws_file_name);
+  }
+  API.saveExample(track)
+    .then(function (data) {
+      // refreshExamples(); 
+      console.log('return from then of saveExample', data.id, $("#audioFileChooser").prop('files')[0]);
+      var fileToUpload = $("#audioFileChooser").prop('files')[0];
+      initUpload(fileToUpload, data.id + "." + fileToUpload.name.split(".").pop());
+
+    });
 
   $trackTitle.val("");
   $trackDescription.val("");
