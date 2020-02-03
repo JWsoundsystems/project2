@@ -112,7 +112,7 @@ module.exports = function (app) {
   });
 
 
-  app.get('/getTrack', (req, res) => {
+  app.get('/api/getTrack', (req, res) => {
     const s3 = new aws.S3({
       accessKeyId: S3_KEY,
       secretAccessKey: S3_SKEY,
