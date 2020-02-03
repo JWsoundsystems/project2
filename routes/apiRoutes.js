@@ -53,25 +53,28 @@ module.exports = function (app) {
   //  Load the S3 information from the environment variables.
 
 
-  var S3_BUCKET;
-  if (process.env.S3_BUCKET) {
-    S3_BUCKET = process.env.S3_BUCKET
-  } else {
-    S3_BUCKET = 'ucbx-proj2-tracks'
-  };
+  var S3_BUCKET = process.env.S3_BUCKET;
+  S3_KEY = process.env.AWS_ACCESS_KEY_ID;
+  ; S3_SKEY = process.env.AWS_SECRET_ACCESS_KEY_ID
 
-  if (process.env.AWS_ACCESS_KEY_ID) {
-    S3_KEY = process.env.AWS_ACCESS_KEY_ID
-  } else {
-    // const local = require('../keys')
-    // S3_KEY = local.k
-  }
-  if (process.env.AWS_SECRET_ACCESS_KEY_ID) {
-    S3_SKEY = process.env.AWS_SECRET_ACCESS_KEY_ID
-  } else {
-    // const local = require('../keys')
-    // S3_SKEY = local.s
-  }
+  // if (process.env.S3_BUCKET) {
+  //   S3_BUCKET 
+  // } else {
+  //   S3_BUCKET = 'ucbx-proj2-tracks'
+  // };
+
+  // if (process.env.AWS_ACCESS_KEY_ID) {
+  //   S3_KEY = process.env.AWS_ACCESS_KEY_ID
+  // } else {
+  //   // const local = require('../keys')
+  //   // S3_KEY = local.k
+  // }
+  // if (process.env.AWS_SECRET_ACCESS_KEY_ID) {
+  //   S3_SKEY = process.env.AWS_SECRET_ACCESS_KEY_ID
+  // } else {
+  //   // const local = require('../keys')
+  //   // S3_SKEY = local.s
+  // }
 
 
   /*
@@ -108,13 +111,43 @@ module.exports = function (app) {
     });
   });
 
-  /*
-   * Respond to POST requests to /submit_form.
-   * This function needs to be completed to handle the information in
-   * a way that suits your application.
-   */
-  app.post('/save-details', (req, res) => {
-    // TODO: Read POSTed form data and do something useful
-  });
+
+  app.get('/getTrack', (req, res) => {
+    const s3 = new aws.S3({
+      accessKeyId: S3_KEY,
+      secretAccessKey: S3_SKEY,
+      region: 'us-west-1'
+    });
+
+    s3.getObject({ Bucket: S3_BUCKET, Key: req.query['file-name'] }, function (error, data) {
+      if (error) {
+        console.log('error', error);
+        res.end();
+      }
+      // console.log('data', data);
+      // res.end();
+      var attachment = data.Body.toString('base64');
+      console.log('data:mp3;base64,' + attachment);
+      // res.json('data:mp3;base64,' + attachmentattachment);
+      const returnData = {
+        base64: 'data:mp3;base64,' + attachment
+      }
+      res.write(JSON.stringify(returnData));
+      res.end();
+    })
+  })
+
+
+
+
+
+  // /*
+  //  * Respond to POST requests to /submit_form.
+  //  * This function needs to be completed to handle the information in
+  //  * a way that suits your application.
+  //  */
+  // app.post('/save-details', (req, res) => {
+  //   // TODO: Read POSTed form data and do something useful
+  // });
 
 };
