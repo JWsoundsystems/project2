@@ -63,14 +63,14 @@ module.exports = function (app) {
   if (process.env.AWS_ACCESS_KEY_ID) {
     S3_KEY = process.env.AWS_ACCESS_KEY_ID
   } else {
-    const local = require('../keys')
-    S3_KEY = local.k
+    // const local = require('../keys')
+    // S3_KEY = local.k
   }
   if (process.env.AWS_SECRET_ACCESS_KEY_ID) {
     S3_SKEY = process.env.AWS_SECRET_ACCESS_KEY_ID
   } else {
-    const local = require('../keys')
-    S3_SKEY = local.s
+    // const local = require('../keys')
+    // S3_SKEY = local.s
   }
 
 
