@@ -82,6 +82,10 @@ var refreshExamples = function () {
 var handleFormSubmit = function (event) {
   event.preventDefault();
 
+  // this is for grabbing the file extension to handle all file types
+  var file_name = $("#audioFileChooser").prop('files')[0].name.split('.');
+  var file_extension = file_name[file_name.length - 1];
+
   var track = {
     title: $trackTitle.val().trim(),
     description: $trackDescription.val().trim(),
@@ -91,10 +95,10 @@ var handleFormSubmit = function (event) {
     bpm: parseInt($trackBpm.val().trim()),
     // key_signature: $trackKeySignature.val().trim(),
     // time_signature: $trackTimeSignature.val().trim(),
-    // sound_file: $("#audioFileChooser").prop('files')[0].split('.')
+    sound_file: file_extension
   };
 
-  if (!(track.title && track.description && track.genre && track.bpm)) {
+  if (!(track.title && track.description && track.genre && track.bpm && track.sound_file)) {
     alert("You must fill out all the fields!");
     return;
   }
