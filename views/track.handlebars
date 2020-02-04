@@ -42,11 +42,11 @@
 
                 $("#start-track").on('click', () => {
                   event.preventDefault();
-                  var s3TrackKey = '{{id}}' + '.mp3';
+                  var s3TrackKey = '{{id}}.{{sound_file}}';
                   getTrack(s3TrackKey).then(function (data) {
                     var sound = new Howl({
-                      src: [data.base64],
-                      format: 'mp3'
+                      src: ['data:{{sound_file}};base64,' + data.base64],
+                      format: '{{sound_file}}'
                     });
 
                     sound.play();

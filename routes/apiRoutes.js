@@ -127,10 +127,10 @@ module.exports = function (app) {
       // console.log('data', data);
       // res.end();
       var attachment = data.Body.toString('base64');
-      // console.log('data:mp3;base64,' + attachment);
+      console.log(attachment);
       // res.json('data:mp3;base64,' + attachmentattachment);
       const returnData = {
-        base64: 'data:mp3;base64,' + attachment
+        base64: attachment
       }
       // console.log(returnData, 'returnData')
       res.json(returnData);
