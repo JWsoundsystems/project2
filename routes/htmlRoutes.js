@@ -7,7 +7,7 @@ module.exports = function (app) {
     // console.log(data)
     // res.json(data)
 
-    res.render("start")
+    res.render("index")
     // , {
     //   msg: "untitled music app",
     // tracks: data
