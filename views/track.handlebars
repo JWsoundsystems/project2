@@ -2,59 +2,59 @@
   <div class="row">
     <div class="col-8 offset-2">
       <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Track</h5>
+        <div class="card-body bg-light">
+          <h5 class="card-title"><strong>Title</strong>: {{title}}</h5>
           <p>
             <strong>ID</strong>: {{id}}
           </p>
           <p>
-            <p>
+            {{!-- <p>
               <strong>Title</strong>: {{title}}</p>
+            <p> --}}
+            <p>
+              <strong>genre</strong>: {{genre}}</p>
             <p>
               <p>
-                <strong>genre</strong>: {{genre}}</p>
+                <strong>BPM</strong>: {{bpm}}</p>
               <p>
-                <p>
-                  <strong>BPM</strong>: {{bpm}}</p>
-                <p>
 
 
-                  <strong>Description:</strong> {{description}}</p>
-                <button id='start-track'>CLICK TO PLAY SONG</button><br>
-                <a href="/">← Back To Home</a>
-                <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-                  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/howler@2.1.3/dist/howler.min.js"></script>
-                <script>
-                  const getTrack = (filekey) => {
-                    return $.ajax({
-                      headers: {
-                        "Content-Type": "application/json"
-                      },
-                      type: "GET",
-                      url: "api/getTrack?file-name=" + filekey,
-                      success: function (resp) {
-                        return resp
-                      }
-                    })
-                  }
+                <strong>Description:</strong> {{description}}</p>
+              <button id='start-track' class='btn-dark btn m-4 rounded-0'>CLICK TO PLAY SONG</button><br>
+              <a href="/">← Back To Home</a>
+              <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+              <script src="https://cdn.jsdelivr.net/npm/howler@2.1.3/dist/howler.min.js"></script>
+              <script>
+                const getTrack = (filekey) => {
+                  return $.ajax({
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    type: "GET",
+                    url: "api/getTrack?file-name=" + filekey,
+                    success: function (resp) {
+                      return resp
+                    }
+                  })
+                }
 
 
-                  $("#start-track").on('click', () => {
-                    event.preventDefault();
-                    var s3TrackKey = '{{id}}' + '.mp3';
-                    getTrack(s3TrackKey).then(function (data) {
-                      var sound = new Howl({
-                        src: [data.base64],
-                        format: 'mp3'
-                      });
-
-                      sound.play();
+                $("#start-track").on('click', () => {
+                  event.preventDefault();
+                  var s3TrackKey = '{{id}}' + '.mp3';
+                  getTrack(s3TrackKey).then(function (data) {
+                    var sound = new Howl({
+                      src: [data.base64],
+                      format: 'mp3'
                     });
 
-                  }
+                    sound.play();
+                  });
 
-                  )</script>
+                }
+
+                )</script>
         </div>
       </div>
     </div>
