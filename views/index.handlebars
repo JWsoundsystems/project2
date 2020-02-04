@@ -1,65 +1,38 @@
 <div id="home" class="bg-light">
 
-  <div class="container bg-light">
-    <div class="row jumbotron bg-light">
-      <h2>t h u n d e r t u n e s</h2>
-      </h2>
-      <hr>
 
+  <div class="row">
+    <div class="col-12">
 
-    </div>
-    <div class="row m-2">
-      <nav class="nav justify-content-center navbar-expand-lg navbar-light bg-light col-12">
-        {{!-- <a class="navbar-brand" href="/index">Navbar</a> --}}
-        {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> --}}
-
-
-        <ul class="nav justify-content-center">
-          <li class="nav-item active">
-            <a class="nav-link dark" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/newtrack">New Track</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Log In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/signup">Sign Up</a>
-          </li>
-        </ul>
-
-
-
-      </nav>
-    </div>
-    <div class="row">
-      <div class="col-12">
-
-        <div class="card rounded-0">
-          <div class="card-header">
-            <h3 class="card-title m-2">all the ripples</h3>
-          </div>
-          <div class="card-body bg-light rounded-0">
-
-            <ul id="example-list" class="list-group rounded-0">
-              {{#each tracks}}
-              <li data-id="{{this.dataValues.id}}" class="list-group-item border-light bg-light rounded-0">
-                <a href="track/{{this.dataValues.id}}"> {{this.dataValues.title}}</a>
-                {{!-- <button class="btn btn-light  float-right delete rounded-0">ｘ</button> --}}
-              </li>
-              {{/each}}
-            </ul>
-          </div>
+      <div class="card border-0 rounded-0">
+        <div class="card-header border-0">
+          <h3 class="card-title text-center m-2 border-0">all the ripples</h3>
         </div>
+        <div class="card-body bg-light border-dark rounded-0">
 
+          <ul id="example-list" class="list-group rounded-0">
+            {{#each tracks}}
+            <li data-id="{{this.dataValues.id}}" class="list-group-item border-light bg-light rounded-0">
+              <div class="card border-dark rounded-0 flex d-flex">
+                <div class="card-header border-dark"><a href="track/{{this.dataValues.id}}">
+                    {{this.dataValues.title}}
+                  </a></div>
+                <div class="card-body bg-light">
+                  {{this.dataValues.genre}} - {{this.dataValues.bpm}} bpm
+                </div>
+              </div>
+
+              {{!-- <button class="btn btn-light  float-right delete rounded-0">ｘ</button> --}}
+            </li>
+            {{/each}}
+          </ul>
+        </div>
       </div>
 
     </div>
+
   </div>
+</div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

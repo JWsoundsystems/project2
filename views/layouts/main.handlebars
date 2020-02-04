@@ -8,8 +8,44 @@
   <title>Home Page</title>
 </head>
 
-<body>
-  {{{body}}}
+<body class="bg-light">
+  <div class="container bg-light">
+    <div class="row jumbotron bg-light">
+      <h2>t h u n d e r t u n e s</h2>
+      </h2>
+      <hr>
+
+
+    </div>
+    <div class="row m-2">
+      <nav class="nav justify-content-center navbar-expand-lg navbar-light bg-light col-12">
+        {{!-- <a class="navbar-brand" href="/index">Navbar</a> --}}
+        {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> --}}
+
+
+        <ul class="nav justify-content-center">
+          <li class="nav-item active">
+            <a class="nav-link dark" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/newtrack">New Track</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Log In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign Up</a>
+          </li>
+        </ul>
+
+
+
+      </nav>
+    </div>
+    {{{body}}}
 </body>
 
 </html>
