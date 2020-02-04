@@ -91,10 +91,10 @@ var handleFormSubmit = function (event) {
     bpm: parseInt($trackBpm.val().trim()),
     key_signature: $trackKeySignature.val().trim(),
     time_signature: $trackTimeSignature.val().trim(),
-    // sound_file: $trackSoundFile.val().trim()
+    sound_file: $("#audioFileChooser").prop('files')[0].split('.')
   };
 
-  if (!(track.title && track.description && track.instrument && track.length && track.genre && track.bpm && track.key_signature && track.time_signature)) {
+  if (!(track.title && track.description && track.instrument && track.length && track.genre && track.bpm && track.key_signature && track.time_signature && track.sound_file)) {
     alert("You must fill out all the fields!");
     return;
   }
