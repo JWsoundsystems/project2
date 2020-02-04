@@ -52,7 +52,7 @@ module.exports = function (app) {
 
   //  Load the S3 information from the environment variables.
 
-  const local = require('../keys')
+
   var S3_BUCKET;
   if (process.env.S3_BUCKET) {
     S3_BUCKET = process.env.S3_BUCKET
@@ -63,11 +63,13 @@ module.exports = function (app) {
   if (process.env.AWS_ACCESS_KEY_ID) {
     S3_KEY = process.env.AWS_ACCESS_KEY_ID
   } else {
+    const local = require('../keys')
     S3_KEY = local.k
   }
   if (process.env.AWS_SECRET_ACCESS_KEY_ID) {
     S3_SKEY = process.env.AWS_SECRET_ACCESS_KEY_ID
   } else {
+    const local = require('../keys')
     S3_SKEY = local.s
   }
 
