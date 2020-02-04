@@ -1,3 +1,9 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+.body {
+  font-family: sans-serif;
+  font-size: 100%;
+  
+}
