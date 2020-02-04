@@ -11,3 +11,10 @@
 a {
   color: black;
 }
+
+* {
+  /* font-family: 'VT323', monospace !important; */
+  /* font-family: 'Press Start 2P', monospace !important; */
+  font-family: 'Geo', monospace !important;
+
+}
