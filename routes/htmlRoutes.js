@@ -3,16 +3,19 @@ var db = require("../models");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    // db.Track.findAll({}).then(function (data) {
-    // console.log(data)
-    // res.json(data)
+    db.Track.findAll({}).then(function (data) {
+      // console.log(data)
+      // res.json(data)
 
-    res.render("index")
-    // , {
-    //   msg: "untitled music app",
-    // tracks: data
-    // });
-    // });
+      res.render("index", {
+        msg: "untitled music app",
+        tracks: data
+      });
+      // , {
+      //   msg: "untitled music app",
+      // tracks: data
+      // });
+    });
   });
 
   app.get("/login", function (req, res) {
@@ -33,7 +36,7 @@ module.exports = function (app) {
     // console.log(data)
     // res.json(data)
 
-    res.render("index")
+    res.render("signup")
     // , {
     //   msg: "untitled music app",
     // tracks: data
