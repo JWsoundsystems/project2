@@ -112,7 +112,7 @@ module.exports = function (app) {
   });
 
 
-  app.get('/api/getTrack', (req, res) => {
+  app.get('/track/api/getTrack', (req, res) => {
     const s3 = new aws.S3({
       accessKeyId: S3_KEY,
       secretAccessKey: S3_SKEY,
@@ -127,12 +127,13 @@ module.exports = function (app) {
       // console.log('data', data);
       // res.end();
       var attachment = data.Body.toString('base64');
-      console.log('data:mp3;base64,' + attachment);
+      // console.log('data:mp3;base64,' + attachment);
       // res.json('data:mp3;base64,' + attachmentattachment);
       const returnData = {
         base64: 'data:mp3;base64,' + attachment
       }
-      res.write(JSON.stringify(returnData));
+      // console.log(returnData, 'returnData')
+      res.json(returnData);
       res.end();
     })
   })
