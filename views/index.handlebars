@@ -1,28 +1,20 @@
-<div id="home">
-  <div class="container">
-    <div class="row jumbotron">
-      {{!-- <h1>{{msg}}</h1> --}}
-      <h2>This is our Home Page!</h2>
-      <hr>
+<div id="home" class="bg-light">
+  <div class="container bg-light">
 
-
-    </div>
-    <div class="row"><a href="/">Home</a>||||||
-      <a href="/newtrack">New Track</a></div>
     <div class="row">
       <div class="col-12">
 
-        <div class="card">
+        <div class="card rounded-0">
           <div class="card-header">
-            <h3 class="card-title">Available Tracks:</h3>
+            <h3 class="card-title m-2">all the ripples</h3>
           </div>
-          <div class="card-body">
+          <div class="card-body bg-light rounded-0">
 
-            <ul id="example-list" class="list-group ">
+            <ul id="example-list" class="list-group rounded-0">
               {{#each tracks}}
-              <li data-id="{{this.dataValues.id}}" class="list-group-item">
-                Title:<a href="track/{{this.dataValues.id}}"> {{this.dataValues.title}}</a>
-                <button class="btn btn-danger float-right delete">ｘ</button>
+              <li data-id="{{this.dataValues.id}}" class="list-group-item border-light bg-light rounded-0">
+                <a href="track/{{this.dataValues.id}}"> {{this.dataValues.title}}</a>
+                {{!-- <button class="btn btn-light  float-right delete rounded-0">ｘ</button> --}}
               </li>
               {{/each}}
             </ul>
