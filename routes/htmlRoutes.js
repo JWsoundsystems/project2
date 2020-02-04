@@ -3,7 +3,11 @@ var db = require("../models");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    db.Track.findAll({}).then(function (data) {
+    db.Track.findAll({
+      order: [
+        ['id', 'DESC']
+      ]
+    }).then(function (data) {
       // console.log(data)
       // res.json(data)
 

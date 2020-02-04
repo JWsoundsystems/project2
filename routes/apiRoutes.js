@@ -9,7 +9,11 @@ module.exports = function (app) {
   // });
   // Get all tracks
   app.get("/api/tracks", function (req, res) {
-    db.Track.findAll({}).then(function (dbExamples) {
+    db.Track.findAll({
+      order: [
+        ['id', 'DESC']
+      ]
+    }).then(function (dbExamples) {
       res.json(dbExamples);
     });
   });
