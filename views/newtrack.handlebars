@@ -1,59 +1,35 @@
 <div id="newTrack">
     <div class="container">
-        <div class="row jumbotron">
-            {{!-- <h1>{{msg}}</h1> --}}
-            <h2>Add a new track here!</h2>
-        </div>
-        <div class="row"><a href="/">Home</a>||||||<a href="/newtrack">New Track</a></div>
+
         <div class="row">
             <div class="col-12">
-                <form class="clearfix border p-4 mb-4 " action="POST">
+                <form class="clearfix border rounded-0 border-dark p-4 mb-4 " action="POST">
                     <h3 class="">Add New Track!</h3>
                     <div class="form-group">
                         <label for="track-title">Track Title</label>
-                        <input type="text" id="track-title" class="form-control" aria-describedby="track-title"
-                            placeholder="Enter Track Title">
+                        <input type="text" id="track-title" class="form-control rounded-0 bg-light border-dark"
+                            aria-describedby="track-title" placeholder="Enter Track Title">
                     </div>
                     <div class="form-group">
                         <label for="track-description">Track Description</label>
-                        <textarea class="form-control" id="track-description" aria-describedby="track-description"
-                            placeholder="Enter Track Description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="track-instrument">Track Instrument</label>
-                        <textarea class="form-control" id="track-instrument" aria-describedby="track-instrument"
-                            placeholder="Enter Track Instrument"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="track-length">Track length</label>
-                        <textarea class="form-control" id="track-length" aria-describedby="track-length"
-                            placeholder="Enter Track length"></textarea>
+                        <textarea class="form-control rounded-0 bg-light border-dark" id="track-description"
+                            aria-describedby="track-description" placeholder="Enter Track Description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="track-genre">Track genre</label>
-                        <textarea class="form-control" id="track-genre" aria-describedby="track-genre"
-                            placeholder="Enter Track genre"></textarea>
+                        <textarea class="form-control rounded-0 bg-light border-dark" id="track-genre"
+                            aria-describedby="track-genre" placeholder="Enter Track genre"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="track-bpm">Track bpm</label>
-                        <textarea class="form-control" id="track-bpm" aria-describedby="track-bpm"
-                            placeholder="Enter Track bpm"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="track-key-signature">Track key-signature</label>
-                        <textarea class="form-control" id="track-key-signature" aria-describedby="track-key-signature"
-                            placeholder="Enter Track key-signature"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="track-time-signature">Track time-signature</label>
-                        <textarea class="form-control" id="track-time-signature" aria-describedby="track-time-signature"
-                            placeholder="Enter Track time-signature"></textarea>
+                        <input class="form-control rounded-0 bg-light border-dark" id="track-bpm"
+                            aria-describedby="track-bpm" placeholder="Enter Track bpm"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="audioFileChooser">Upload an audio file: </label><br><br>
                         <input id="audioFileChooser" type="file">
                     </div>
-                    <button id="submit" class="btn btn-primary float-right">Submit</button>
+                    <button id="submit" class="btn btn-dark float-right rounded-0 ">Submit</button>
                 </form>
             </div>
         </div>
