@@ -1,7 +1,5 @@
 // Get references to page elements
 
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
 var $trackTitle = $("#track-title");
 var $trackDescription = $("#track-description");
 var $trackLength = $("#track-length");
@@ -17,7 +15,7 @@ var $exampleList = $("#example-list");
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function (example) {
-    // var data;
+
     console.log('we are in saveExample now, gonna start the ajax call')
     return $.ajax({
       headers: {
@@ -86,6 +84,8 @@ var handleFormSubmit = function (event) {
   var file_name = $("#audioFileChooser").prop('files')[0].name.split('.');
   var file_extension = file_name[file_name.length - 1];
   var available_extensions = ["mp3", "wav"]
+
+  // check that the file is correct type
   if (!available_extensions.includes(file_extension)) {
     alert("Please only upload .mp3 or .wav files");
     return;
@@ -93,12 +93,8 @@ var handleFormSubmit = function (event) {
   var track = {
     title: $trackTitle.val().trim(),
     description: $trackDescription.val().trim(),
-    // instrument: $trackInstrument.val().trim().toLowerCase(),
-    // length: parseInt($trackLength.val().trim()),
     genre: $trackGenre.val().trim().toLowerCase(),
     bpm: parseInt($trackBpm.val().trim()),
-    // key_signature: $trackKeySignature.val().trim(),
-    // time_signature: $trackTimeSignature.val().trim(),
     sound_file: file_extension
   };
 
@@ -106,9 +102,9 @@ var handleFormSubmit = function (event) {
     alert("You must fill out all the fields!");
     return;
   }
-  /*
-            Function to carry out the actual PUT request to S3 using the signed request from the app.
-          */
+
+  // Function to carry out the actual PUT request to S3 using the signed request from the app.
+
   function uploadFile(file, signedRequest, url) {
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
@@ -126,11 +122,10 @@ var handleFormSubmit = function (event) {
     xhr.send(file);
   }
 
-  /*
-    Function to get the temporary signed request from the app.
-    If request successful, continue to upload the file using this signed
-    request.
-  */
+  // Function to get the temporary signed request from the app.
+  //   If request successful, continue to upload the file using this signed
+  //   request.
+
   function getSignedRequest(file, aws_file_name) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `/sign-s3?file-name=${aws_file_name}&file-type=${file.type}`);
@@ -148,13 +143,12 @@ var handleFormSubmit = function (event) {
     xhr.send();
   }
 
-  /*
-   Function called when file input updated. If there is a file selected, then
-   start upload procedure by asking for a signed request from the app.
-  */
+
+  //  Function called when file input updated. If there is a file selected, then
+  //  start upload procedure by asking for a signed request from the app.
+
   function initUpload(file, aws_file_name) {
-    // const files = document.getElementById('file-input').files;
-    // const file = files[0];
+
     if (file == null) {
       return alert('No file selected.');
     }
@@ -162,7 +156,7 @@ var handleFormSubmit = function (event) {
   }
   API.saveExample(track)
     .then(function (data) {
-      // refreshExamples(); 
+
       console.log('return from then of saveExample', data.id, $("#audioFileChooser").prop('files')[0]);
       var fileToUpload = $("#audioFileChooser").prop('files')[0];
       initUpload(fileToUpload, data.id + "." + fileToUpload.name.split(".").pop());
@@ -171,13 +165,8 @@ var handleFormSubmit = function (event) {
 
   $trackTitle.val("");
   $trackDescription.val("");
-  $trackInstrument.val("");
-  $trackLength.val("");
   $trackGenre.val("");
   $trackBpm.val("");
-  $trackKeySignature.val("");
-  $trackTimeSignature.val("");
-  $trackSoundFile.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked

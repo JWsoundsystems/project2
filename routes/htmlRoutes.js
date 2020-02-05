@@ -8,51 +8,26 @@ module.exports = function (app) {
         ['id', 'DESC']
       ]
     }).then(function (data) {
-      // console.log(data)
-      // res.json(data)
 
       res.render("index", {
-        msg: "untitled music app",
         tracks: data
       });
-      // , {
-      //   msg: "untitled music app",
-      // tracks: data
-      // });
     });
   });
 
   app.get("/login", function (req, res) {
-    // db.Track.findAll({}).then(function (data) {
-    // console.log(data)
-    // res.json(data)
 
     res.render("login")
-    // , {
-    //   msg: "untitled music app",
-    // tracks: data
-    // });
-    // });
   });
 
   app.get("/signup", function (req, res) {
-    // db.Track.findAll({}).then(function (data) {
-    // console.log(data)
-    // res.json(data)
 
     res.render("signup")
-    // , {
-    //   msg: "untitled music app",
-    // tracks: data
-    // });
-    // });
   });
 
   // Load index page
   app.get("/index", function (req, res) {
     db.Track.findAll({}).then(function (data) {
-      // console.log(data)
-      // res.json(data)
 
       res.render("index", {
         msg: "untitled music app",
@@ -63,14 +38,6 @@ module.exports = function (app) {
   app.get("/newtrack", function (req, res) {
     res.render("newtrack");
   });
-  // // Load example page and pass in an example by id
-  // app.get("/example/:id", function (req, res) {
-  //   db.Example.findOne({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
 
   // Load example page and pass in an example by id
   app.get("/track/:id", function (req, res) {
@@ -92,8 +59,8 @@ module.exports = function (app) {
     });
   });
 
-  // Render 404 page for any unmatched routes
-  //   app.get("*", function (req, res) {
-  //     res.render("404");
-  //   });
+  Render 404 page for any unmatched routes
+    app.get("*", function (req, res) {
+    res.render("404");
+  });
 };
