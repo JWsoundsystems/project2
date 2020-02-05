@@ -85,7 +85,11 @@ var handleFormSubmit = function (event) {
   // this is for grabbing the file extension to handle all file types
   var file_name = $("#audioFileChooser").prop('files')[0].name.split('.');
   var file_extension = file_name[file_name.length - 1];
-
+  var available_extensions = ["mp3", "wav"]
+  if (!available_extensions.includes(file_extension)) {
+    alert("Please only upload .mp3 or .wav files");
+    return;
+  }
   var track = {
     title: $trackTitle.val().trim(),
     description: $trackDescription.val().trim(),
