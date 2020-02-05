@@ -31,7 +31,11 @@
                         <p>
 
                           <strong>Description:</strong> {{description}}</p>
-                        <button id='start-track'>CLICK TO PLAY SONG</button><br>
+                        <button id='howler-play'>Play</button>
+                        <button id='howler-pause'>Pause</button>
+                        <button id='howler-stop'>Stop</button>
+                        <button id='howler-volup'>Vol+</button>
+                        <button id='howler-voldown'>Vol-</button><br>
                         <a href="/">← Back To Home</a>
                         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
                           integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -51,8 +55,8 @@
                             })
                           }
 
-
-                          $("#start-track").on('click', () => {
+              
+                          $("#howler-play").on('click', () => {
                             event.preventDefault();
                             var s3TrackKey = '{{id}}' + '.mp3';
                             getTrack(s3TrackKey).then(function (data) {
@@ -60,13 +64,42 @@
                                 src: [data.base64],
                                 format: 'mp3'
                               });
-
                               sound.play();
                             });
 
-                          }
+                          });
 
-                          )</script>
+                            $("#howler-pause").on('click', () => {
+                              sound.pause();
+                            });
+
+                          
+
+	                          $("#howler-stop").on('click', () => {
+                              sound.stop();
+                            });
+                        
+
+	                          $("#howler-volup").on("click", function(){
+		                        var vol = sound.volume();
+		                        vol += 0.1;
+		                        if (vol > 1) {
+		                          	vol = 1;
+		                        }
+		                        sound.volume(vol);
+	                          });
+
+	                          $("#howler-voldown").on("click", function(){
+		                        var vol = sound.volume();
+		                        vol -= 0.1;
+		                        if (vol < 0) {
+			                          vol = 0;
+		                        }
+		                        sound.volume(vol);
+	                          });
+                            
+                
+            </script>
         </div>
       </div>
     </div>
