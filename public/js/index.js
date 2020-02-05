@@ -111,7 +111,8 @@ var handleFormSubmit = function (event) {
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          console.log('FILE WAS UPLOADED!')
+          alert('FILE WAS UPLOADED!');
+          $("body").load("/");
         }
         else {
           alert('Could not upload file.');
