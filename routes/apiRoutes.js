@@ -15,10 +15,15 @@ module.exports = function (app) {
 
   // Create a new track
   app.post("/api/tracks", function (req, res) {
+    console.log(req.body)
     db.Track.create(req.body).then(function (dbExample) {
-      res.json(dbExample);
-    });
-  });
+
+      res.json(dbExample)
+    })
+  }
+  );
+
+
 
 
   // Delete an track by id
@@ -94,7 +99,7 @@ module.exports = function (app) {
 
 
       var attachment = data.Body.toString('base64');
-      console.log(attachment);
+      // console.log(attachment);
 
       const returnData = {
         base64: attachment

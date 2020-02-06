@@ -95,7 +95,8 @@ var handleFormSubmit = function (event) {
     description: $trackDescription.val().trim(),
     genre: $trackGenre.val().trim().toLowerCase(),
     bpm: parseInt($trackBpm.val().trim()),
-    sound_file: file_extension
+    sound_file: file_extension,
+    UserId: 1
   };
 
   if (!(track.title && track.description && track.genre && track.bpm && track.sound_file)) {
