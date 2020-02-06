@@ -15,43 +15,76 @@
               <strong>BPM</strong>: {{bpm}}</p>
             <p>
 
+                          <strong>Description:</strong> {{description}}</p>
+                        <button id='howler-play'>Play</button>
+                        <button id='howler-pause'>Pause</button>
+                        <button id='howler-stop'>Stop</button>
+                        <button id='howler-volup'>Vol+</button>
+                        <button id='howler-voldown'>Vol-</button><br>
+                        <a href="/">← Back To Home</a>
+                        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                          crossorigin="anonymous"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/howler@2.1.3/dist/howler.min.js"></script>
+                        <script>
+                          const getTrack = (filekey) => {
+                            return $.ajax({
+                              headers: {
+                                "Content-Type": "application/json"
+                              },
+                              type: "GET",
+                              url: "api/getTrack?file-name=" + filekey,
+                              success: function (resp) {
+                                return resp
+                              }
+                            })
+                          }
 
-              <strong>Description:</strong> {{description}}</p>
-            <button id='start-track' class='btn-dark btn m-4 rounded-0'>CLICK TO PLAY SONG</button><br>
-            <a href="/">← Back To Home</a>
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-              integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/howler@2.1.3/dist/howler.min.js"></script>
-            <script>
-              const getTrack = (filekey) => {
-                return $.ajax({
-                  headers: {
-                    "Content-Type": "application/json"
-                  },
-                  type: "GET",
-                  url: "api/getTrack?file-name=" + filekey,
-                  success: function (resp) {
-                    return resp
-                  }
-                })
-              }
+              
+                          $("#howler-play").on('click', () => {
+                            event.preventDefault();
+                            var s3TrackKey = '{{id}}' + '.mp3';
+                            getTrack(s3TrackKey).then(function (data) {
+                              var sound = new Howl({
+                                src: [data.base64],
+                                format: 'mp3'
+                              });
+                              sound.play();
+                            });
 
+                          });
 
-              $("#start-track").on('click', () => {
-                event.preventDefault();
-                var s3TrackKey = '{{id}}.{{sound_file}}';
-                getTrack(s3TrackKey).then(function (data) {
-                  var sound = new Howl({
-                    src: ['data:{{sound_file}};base64,' + data.base64],
-                    format: '{{sound_file}}'
-                  });
+                            $("#howler-pause").on('click', () => {
+                              sound.pause();
+                            });
 
-                  sound.play();
-                });
+                          
 
-              }
+	                          $("#howler-stop").on('click', () => {
+                              sound.stop();
+                            });
+                        
 
-              )</script>
+	                          $("#howler-volup").on("click", function(){
+		                        var vol = sound.volume();
+		                        vol += 0.1;
+		                        if (vol > 1) {
+		                          	vol = 1;
+		                        }
+		                        sound.volume(vol);
+	                          });
+
+	                          $("#howler-voldown").on("click", function(){
+		                        var vol = sound.volume();
+		                        vol -= 0.1;
+		                        if (vol < 0) {
+			                          vol = 0;
+		                        }
+		                        sound.volume(vol);
+	                          });
+                            
+                
+            </script>
         </div>
       </div>
     </div>
