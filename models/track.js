@@ -11,5 +11,13 @@ module.exports = function (sequelize, DataTypes) {
     sound_file: DataTypes.TEXT,
 
   });
+
+  Track.associate = function (models) {
+    Track.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
+  }
   return Track;
 };
