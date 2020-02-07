@@ -45,7 +45,7 @@ module.exports = function (app) {
       track = {
         id: data.id,
         title: data.title,
-        description: data.description,
+        artist: data.artist,
         instrument: data.instrument,
         length: data.length,
         genre: data.genre,
