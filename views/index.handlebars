@@ -17,12 +17,12 @@
               <div class="card border-dark rounded-0 flex d-flex">
                 <div class="card-header border-dark"><a href="track/{{this.dataValues.id}}">
                     {{this.dataValues.title}}
-                  </a></div>
+                  </a> </div>
                 <div class="card-body bg-light">
-                  {{this.dataValues.genre}} - {{this.dataValues.bpm}} bpm
+                  {{this.dataValues.artist}} - {{this.dataValues.genre}} - {{this.dataValues.bpm}} bpm
                 </div>
               </div>
-
+              <button class="btn btn-light rounded-0 border-0 float-right delete">delete this track ^</button>
             </li>
             {{/each}}
           </ul>

@@ -1,7 +1,7 @@
 // Get references to page elements
 
 var $trackTitle = $("#track-title");
-var $trackDescription = $("#track-description");
+var $trackArtist = $("#track-artist");
 var $trackLength = $("#track-length");
 var $trackGenre = $("#track-genre");
 var $trackInstrument = $("#track-instrument");
@@ -92,14 +92,14 @@ var handleFormSubmit = function (event) {
   }
   var track = {
     title: $trackTitle.val().trim(),
-    description: $trackDescription.val().trim(),
+    artist: $trackArtist.val().trim(),
     genre: $trackGenre.val().trim().toLowerCase(),
     bpm: parseInt($trackBpm.val().trim()),
     sound_file: file_extension,
     UserId: 1
   };
 
-  if (!(track.title && track.description && track.genre && track.bpm && track.sound_file)) {
+  if (!(track.title && track.artist && track.genre && track.bpm && track.sound_file)) {
     alert("You must fill out all the fields!");
     return;
   }
@@ -165,7 +165,7 @@ var handleFormSubmit = function (event) {
     });
 
   $trackTitle.val("");
-  $trackDescription.val("");
+  $trackArtist.val("");
   $trackGenre.val("");
   $trackBpm.val("");
 };

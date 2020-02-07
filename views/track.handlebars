@@ -5,6 +5,9 @@
         <div class="card-body bg-light">
           <h5 class="card-title"><strong>Title</strong>: {{title}}</h5>
           <p>
+
+            <strong>Artist:</strong> {{artist}}</p>
+          <p>
             <strong>ID</strong>: {{id}}
           </p>
 
@@ -13,16 +16,14 @@
           <p>
             <p>
               <strong>BPM</strong>: {{bpm}}</p>
-            <p>
 
-              <strong>Description:</strong> {{description}}</p>
             <div class="container m-4">
               <p id="track-loading">Loading track...</p>
-              <button id='howler-play' style='display: none' class="btn-dark btn">Play</button>
-              <button id='howler-pause' style='display: none' class="btn-dark btn">Pause</button>
-              <button id='howler-stop' style='display: none' class="btn-dark btn">Stop</button>
-              <button id='howler-volup' style='display: none' class="btn-dark btn">Vol+</button>
-              <button id='howler-voldown' style='display: none' class="btn-dark btn">Vol-</button><br>
+              <button id='howler-play' style='display: none' class="btn-dark btn rounded-0">Play</button>
+              <button id='howler-pause' style='display: none' class="btn-dark btn rounded-0">Pause</button>
+              <button id='howler-stop' style='display: none' class="btn-dark btn rounded-0">Stop</button>
+              <button id='howler-volup' style='display: none' class="btn-dark btn rounded-0">Vol+</button>
+              <button id='howler-voldown' style='display: none' class="btn-dark btn rounded-0">Vol-</button><br>
             </div>
 
             <a href="/">← Back To Home</a>
