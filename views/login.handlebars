@@ -1,32 +1,63 @@
-<div class="card bg-light border-dark rounded-0">
-    <div class="card-body m-4 text-center">
-        <div>
-            <label>User Name</label>
-            <input id="userName" />
-        </div>
-        <br>
-        <br>
-        <br>
-        <div>
-            <label>Password</label>
-            <input type="password" id="password" />
-        </div>
+<div class="container">
 
-        <div>
-            <button id="loginbtn">Login</button>
+        <div class="card-body">
+            
+                <!-- Sign-up Form (note the various input "types")-->
+            <form role="form">
+                <div class="form-group row">
+                <label for="name-input">Email</label>
+                <input class="form-control" id="email" type="text">
+                </div>
+
+                <div class="form-group row">
+                <label for="password-input">Password</label>
+                <input class="form-control" id="password" type="password">
+                </div>
+                
+                <div id="incorrect-login" style="display: none;">We're sorry, this email and password combination don't match our records.  Please try again.</div>
+                <button class="btn btn-default" id="login-submit" type="login-submit">Submit</button>
+              
+            </form>
+                    
         </div>
+    
     </div>
+        
+        
+        <!-- FIREBASE -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+        
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+            <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+            
+            <!-- realtime file -->
+            <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-database.js"></script>
+            
+            <script>
+                // Your web app's Firebase configuration
+                var firebaseConfig = {
+                    apiKey: "AIzaSyA6BbGNBAmZuLFw0a9Np0ahybsBw8Skijk",
+                    authDomain: "music-app-124ff.firebaseapp.com",
+                    databaseURL: "https://music-app-124ff.firebaseio.com",
+                    projectId: "music-app-124ff",
+                    storageBucket: "music-app-124ff.appspot.com",
+                    messagingSenderId: "353659447165",
+                    appId: "1:353659447165:web:57f16c7e82c15709344e14",
+                    measurementId: "G-LPMTJFNFHM"
+                };
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                firebase.analytics();
+                </script>
+        <!-- END FIREBASE -->
 
-
-</div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-<script src="./js/login.js"></script>
+        <!-- jquery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- bootstrap -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            
+        <!-- connects to the main javascript page -->
+        <script src="js/music.js"></script>

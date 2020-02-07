@@ -1,0 +1,68 @@
+<form class="container">
+      <div class="form-group">
+        <label for="inputAddress">Name</label>
+        <input type="text" class="form-control" id="user-name" placeholder="First Name">
+      </div>
+        
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="user-email" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" id="user-password" placeholder="Password">
+          </div>
+        </div>  
+
+                <button type="submit" id="registration-submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+  
+
+    </div>
+
+    <!-- FIREBASE -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+        
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+            
+        <!-- realtime file -->
+        <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-database.js"></script>
+            
+            <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+              apiKey: "AIzaSyA6BbGNBAmZuLFw0a9Np0ahybsBw8Skijk",
+              authDomain: "music-app-124ff.firebaseapp.com",
+              databaseURL: "https://music-app-124ff.firebaseio.com",
+              projectId: "music-app-124ff",
+              storageBucket: "music-app-124ff.appspot.com",
+              messagingSenderId: "353659447165",
+              appId: "1:353659447165:web:57f16c7e82c15709344e14",
+              measurementId: "G-LPMTJFNFHM"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+            </script>
+        <!-- END FIREBASE -->
+
+
+        <!-- sweetalert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+
+
+        <!-- jquery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- bootstrap -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script src="/js/music.js"></script>
