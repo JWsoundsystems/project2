@@ -1,6 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   var Track = sequelize.define("Track", {
     title: DataTypes.STRING,
+    artist: DataTypes.STRING,
     description: DataTypes.TEXT,
     instrument: DataTypes.STRING,
     length: DataTypes.INTEGER,
