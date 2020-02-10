@@ -16,8 +16,10 @@ module.exports = function (app) {
   });
 
   app.get("/login", function (req, res) {
-
-    res.render("login")
+    keys = {
+      firebase_api_key: process.env.FIREBASE_API_KEY
+    }
+    res.render("login", keys)
   });
 
   app.get("/signup", function (req, res) {
