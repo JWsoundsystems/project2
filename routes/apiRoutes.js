@@ -23,6 +23,16 @@ module.exports = function (app) {
   }
   );
 
+  // Create a new user
+  app.post("/api/newuser", function (req, res) {
+    console.log(req.body)
+    db.User.create(req.body).then(function (dbExample) {
+
+      res.json(dbExample)
+    })
+  }
+  );
+
 
 
 

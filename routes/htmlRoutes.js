@@ -15,6 +15,19 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/all", function (req, res) {
+    db.Track.findAll({
+      order: [
+        ['id', 'DESC']
+      ]
+    }).then(function (data) {
+
+      res.render("index", {
+        tracks: data
+      });
+    });
+  });
+
   app.get("/login", function (req, res) {
     keys = {
       firebase_api_key: process.env.FIREBASE_API_KEY
