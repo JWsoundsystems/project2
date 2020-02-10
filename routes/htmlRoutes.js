@@ -2,10 +2,17 @@ var db = require("../models");
 
 module.exports = function (app) {
   // Load index page
-  app.get("/", function (req, res) {
+  app.get("/index/:id", function (req, res) {
+    console.log(req.params.id, 'id')
     db.Track.findAll({
+      where: {
+        '$User.firebase_unique_id$': req.params.id
+      },
       order: [
         ['id', 'DESC']
+      ],
+      include: [
+        { model: db.User, as: db.User.Users }
       ]
     }).then(function (data) {
 
