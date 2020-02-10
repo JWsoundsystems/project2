@@ -16,7 +16,7 @@ module.exports = function (app) {
       ]
     }).then(function (data) {
 
-      res.render("index", {
+      res.render("index_with_id", {
         tracks: data
       });
     });
@@ -29,7 +29,7 @@ module.exports = function (app) {
       ]
     }).then(function (data) {
 
-      res.render("index", {
+      res.render("explore", {
         tracks: data
       });
     });
